@@ -1,15 +1,15 @@
 variable "env" {
-  type = string
+  type        = string
   description = "Environment the resources are assigned to"
 }
 
 variable "vpc_cidr" {
-  type = string
+  type        = string
   description = "What CIDR is the VPC assigned?"
 }
 
 variable "project_name" {
-  type = string
+  type        = string
   description = "Specific project this infrastructure is associated with"
 }
 
