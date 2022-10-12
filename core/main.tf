@@ -9,6 +9,14 @@ provider "aws" {
   }
 }
 
+module "validate_env" {
+  source = "rhythmictech/errorcheck/terraform"
+  version = "~> 1.3"
+
+  assert = var.env == terraform.workspace
+  error_message = "Selected environment does not match workspace. Make sure to use the correct vars file for the workspace you have selected"
+}
+
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "~> 3.16"

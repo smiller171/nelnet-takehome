@@ -9,6 +9,14 @@ provider "aws" {
   }
 }
 
+module "validate_env" {
+  source = "rhythmictech/errorcheck/terraform"
+  version = "~> 1.3"
+
+  assert = var.env == terraform.workspace
+  error_message = "Selected environment does not match workspace. Make sure to use the correct vars file for the workspace you have selected"
+}
+
 locals {
   package_url = "https://raw.githubusercontent.com/terraform-aws-modules/terraform-aws-lambda/master/examples/fixtures/python3.8-zip/existing_package.zip"
   downloaded  = "downloaded_package_${md5(local.package_url)}.zip"
